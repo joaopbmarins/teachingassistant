@@ -13,7 +13,7 @@ export class App {
   protected readonly title = signal('Cadastro de Alunos');
 
   aluno: Aluno = { nome: '', cpf: '', email: '', github: '' };
-  alunoService = new AlunoService();
+  constructor(private alunoService: AlunoService) {}
   alunos: Aluno[] = [];
   cpfduplicado: boolean = false;
 
