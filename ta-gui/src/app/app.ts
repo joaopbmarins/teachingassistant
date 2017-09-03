@@ -15,14 +15,17 @@ export class App {
   aluno: Aluno = { nome: '', cpf: '', email: '', github: '' };
   alunoService = new AlunoService();
   alunos: Aluno[] = [];
+  cpfduplicado: boolean = false;
 
   gravar(a: Aluno): void {
-   if(this.alunoService.gravar(a)){
-     this.alunos.push(a);
-     this.aluno = { nome: '', cpf: '', email: '', github: '' };
-   } else {
-     this.aluno.cpf = '';
-     alert('Já existe um aluno com esse CPF');
-   }
+    if (this.alunoService.gravar(a)) {
+      this.alunos.push(a);
+      this.aluno = { nome: '', cpf: '', email: '', github: '' };
+    } else {
+      this.cpfduplicado = true;
+    }
+  }
+  onMove(): void {
+    this.cpfduplicado = false;
   }
 }
