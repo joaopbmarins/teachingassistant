@@ -19,7 +19,6 @@ export class Aluno {
 
   clone(): Aluno {
     var aluno: Aluno = new Aluno();
-    aluno.metas = new Map<string, string>();
     aluno.copyFrom(this);
     return aluno;
   }
@@ -32,10 +31,25 @@ export class Aluno {
     this.copyMetasFrom(from.metas);
   }
 
-  copyMetasFrom(from: Map<string, string>): void {
+  copyMetasFrom(from: Map<string, string> | any): void {
     this.metas = new Map<string, string>();
     for (let key in from) {
-      this.metas.set(key, from.get(key)!);
+      this.metas.set(key, from[key]);
     }
+  }
+
+  toJSON() {
+    const metasObj: Record<string, string> = {};
+    this.metas.forEach((valor, chave) => {
+      metasObj[chave] = valor;
+    });
+
+    return {
+      nome: this.nome,
+      cpf: this.cpf,
+      email: this.email,
+      github: this.github,
+      metas: metasObj,
+    };
   }
 }

@@ -2,6 +2,7 @@ import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -34,6 +35,7 @@ import { AlunoService } from './aluno.service';
   providers: [
     provideBrowserGlobalErrorListeners(),
     AlunoService,
+    provideHttpClient()
     //provideClientHydration(withEventReplay())
   ],
   bootstrap: [App],
