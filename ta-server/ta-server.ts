@@ -42,6 +42,18 @@ taserver.put('/aluno', function (req: express.Request, res: express.Response) {
   }
 })
 
+taserver.delete("/aluno/:cpf", function (req: express.Request, res: express.Response) {
+    const cpf = req.params.cpf;
+    const alunoRemovido = cadastro.remover(cpf);
+    if (alunoRemovido) {
+      res.send({ success: "O aluno foi removido com sucesso." });
+    } else {
+      res.send({ failure: "O aluno não foi encontrado." });
+    }
+  }
+);
+
+
 taserver.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
