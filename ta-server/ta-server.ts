@@ -19,7 +19,6 @@ taserver.use(allowCrossDomain);
 taserver.use(bodyParser.json());
 
 taserver.get('/alunos', function (req: express.Request, res: express.Response) {
-  console.log(cadastro.getAlunos())
   res.send(JSON.stringify(cadastro.getAlunos()));
 })
 
